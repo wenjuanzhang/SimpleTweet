@@ -1,17 +1,25 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -67,22 +75,44 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         ImageView ivProfileImage;
         TextView tvBody;
+        TextView tvName;
         TextView tvScreenName;
         TextView tvTimeStamp;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
+            tvName = itemView.findViewById(R.id.tvName);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            container = itemView.findViewById(R.id.container);
         }
 
-        public void bind(Tweet tweet) {
+        public void bind(final Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvName.setText(tweet.user.name);
+            tvScreenName.setText("@" + tweet.user.screenName);
             tvTimeStamp.setText(tweet.getFormattedTimestamp());
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            Glide.with(context).load(tweet.user.profileImageUrl).circleCrop()
+                    .into(ivProfileImage);
+            container.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
+                         // 2. Navigate to a new activity on tap
+                         //Toast.makeText(context, tweet.user.name, Toast.LENGTH_SHORT).show();
+                         Intent i = new Intent(context, DetailActivity.class);
+                         Pair<View, String> p1 = Pair.create((View)tvName, "name");
+                         Pair<View, String> p2 = Pair.create((View)ivProfileImage, "profileImage");
+                         Pair<View, String> p3 = Pair.create((View)tvScreenName, "screenName");
+                         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
+                         i.putExtra("tweet", Parcels.wrap(tweet));
+                         context.startActivity(i, options.toBundle());
+//                    Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                     }
+                 }
+            );
         }
     }
 }
