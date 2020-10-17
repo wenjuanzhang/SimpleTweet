@@ -109,24 +109,44 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public void bind(final Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvName.setText(tweet.userName);
-            tvScreenName.setText("@" + tweet.userScreenName);
+            tvName.setText(tweet.user.name);
+            tvScreenName.setText("@" + tweet.user.screenName);
             tvTimeStamp.setText(tweet.getFormattedTimestamp());
-            if (tweet.likeCount >0) {
+
+            // Set liked counts
+            if (tweet.likeCount != 0) {
                 tvLikeCount.setText(String.valueOf(tweet.likeCount));
             }
+            else {
+                tvLikeCount.setText("");
+            }
+
+            // Set retweet counts
             if (tweet.retweetCount > 0){
                 tvRetweetCount.setText(String.valueOf(tweet.retweetCount));
             }
-            if (tweet.liked) {
+            else {
+                tvRetweetCount.setText("");
+            }
+
+            // Set liked indicator if liked by the current user
+            if (tweet.liked == Boolean.TRUE) {
                 //ivLike.setColorFilter(ContextCompat.getColor(context, R.color.twitter_blue_30), android.graphics.PorterDuff.Mode.SRC_IN);
                 DrawableCompat.setTint(ivLike.getDrawable(), ContextCompat.getColor(context, R.color.twitter_blue_30));
             }
-            if (tweet.retweeted) {
+            else{
+                DrawableCompat.setTint(ivLike.getDrawable(), ContextCompat.getColor(context, R.color.black));
+            }
+
+            // Set retweet indicator if retweeted by the current user
+            if (tweet.retweeted == Boolean.TRUE) {
                 ivRetweet.setColorFilter(ContextCompat.getColor(context, R.color.twitter_blue_30), android.graphics.PorterDuff.Mode.SRC_IN);
             }
+            else {
+                DrawableCompat.setTint(ivRetweet.getDrawable(), ContextCompat.getColor(context, R.color.black));
+            }
             //tvReplyCount.setText(String.valueOf(tweet.replyCount));//.publicMetrics.replyCount));
-            Glide.with(context).load(tweet.userProfileImageUrl)
+            Glide.with(context).load(tweet.user.profileImageUrl)
                     .transform(new MultiTransformation(new FitCenter(), new RoundedCorners(10)))
                     .into(ivProfileImage);
             container.setOnClickListener(new View.OnClickListener() {

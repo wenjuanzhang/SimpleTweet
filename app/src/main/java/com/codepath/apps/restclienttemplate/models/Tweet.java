@@ -79,6 +79,7 @@ public class Tweet {
         tweet.userName = user.name;
         tweet.userScreenName = user.screenName;
         tweet.userProfileImageUrl = user.profileImageUrl;
+        tweet.user = user;
 
         //tweet.publicMetrics = PublicMetrics.fromJson(jsonObject.getJSONObject("public_metrics"));
         return tweet;
