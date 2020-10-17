@@ -109,8 +109,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public void bind(final Tweet tweet) {
             tvBody.setText(tweet.body);
-            tvName.setText(tweet.user.name);
-            tvScreenName.setText("@" + tweet.user.screenName);
+            tvName.setText(tweet.userName);
+            tvScreenName.setText("@" + tweet.userScreenName);
             tvTimeStamp.setText(tweet.getFormattedTimestamp());
             if (tweet.likeCount >0) {
                 tvLikeCount.setText(String.valueOf(tweet.likeCount));
@@ -126,7 +126,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                 ivRetweet.setColorFilter(ContextCompat.getColor(context, R.color.twitter_blue_30), android.graphics.PorterDuff.Mode.SRC_IN);
             }
             //tvReplyCount.setText(String.valueOf(tweet.replyCount));//.publicMetrics.replyCount));
-            Glide.with(context).load(tweet.user.profileImageUrl)
+            Glide.with(context).load(tweet.userProfileImageUrl)
                     .transform(new MultiTransformation(new FitCenter(), new RoundedCorners(10)))
                     .into(ivProfileImage);
             container.setOnClickListener(new View.OnClickListener() {
