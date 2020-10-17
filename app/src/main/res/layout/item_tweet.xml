@@ -5,18 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:layout_marginTop="5dp">
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:transitionName="profileImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:transitionName="profileImage"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvScreenName"
-        android:transitionName="screenName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -25,6 +25,7 @@
         android:layout_marginBottom="5dp"
         android:layout_toEndOf="@id/tvName"
         android:textColor="#737272"
+        android:transitionName="screenName"
         tools:text="/@wenjuanzhang9" />
 
     <TextView
@@ -69,32 +70,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvBody"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="5dp"
-        android:layout_toEndOf="@id/ivLike"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toStartOf="@+id/tvRetweetCount"
+        android:backgroundTint="@color/inline_action_retweet"
         android:scaleX="0.8"
         android:scaleY="0.8"
         app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
     <ImageView
-        android:id="@+id/ivComment"
+        android:id="@+id/ivReply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvBody"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/tvBody"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_toStartOf="@id/ivLike"
+        android:contentDescription="TODO"
         android:scaleX="0.8"
         android:scaleY="0.8"
         app:srcCompat="@drawable/ic_vector_compose_dm" />
 
     <TextView
         android:id="@+id/tvName"
-        android:transitionName="name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -105,5 +102,35 @@
         android:layout_toEndOf="@id/ivProfileImage"
         android:textColor="#121010"
         android:textStyle="bold"
+        android:transitionName="name"
         tools:text="Wenjuan Zhang" />
+
+    <TextView
+        android:id="@+id/tvLikeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBody"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@id/ivLike"
+        tools:text="11" />
+
+    <TextView
+        android:id="@+id/tvRetweetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBody"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="5dp"
+        tools:text="11" />
+
+    <TextView
+        android:id="@+id/tvReplyCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBody"
+        android:layout_marginTop="6dp"
+        android:layout_toStartOf="@+id/ivLike"
+        android:layout_toEndOf="@id/ivReply"
+        tools:text="2" />
 </RelativeLayout>

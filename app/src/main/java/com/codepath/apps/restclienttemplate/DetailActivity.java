@@ -23,6 +23,10 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher_twitter);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         tvName = findViewById(R.id.tvName);
         tvScreenName = findViewById(R.id.tvScreenName);
         ivProfileImage = findViewById(R.id.ivProfileImage);
@@ -33,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         // tvTitle.setText(title);
         tvBody.setText(tweet.body);
         tvName.setText(tweet.user.name);
-        tvScreenName.setText(tweet.user.screenName);
+        tvScreenName.setText("@"+tweet.user.screenName);
         tvTimeStamp.setText(tweet.getFormattedTimestamp());
         Glide.with(this).load(tweet.user.profileImageUrl).circleCrop()
                 .into(ivProfileImage);

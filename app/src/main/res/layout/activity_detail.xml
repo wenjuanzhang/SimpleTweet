@@ -9,6 +9,17 @@
     tools:context=".DetailActivity">
 
     <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBody"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
         android:id="@+id/ivProfileImage"
         android:transitionName="profileImage"
         android:layout_width="100dp"
@@ -66,5 +77,15 @@
         android:layout_marginBottom="20dp"
         android:textSize="17sp"
         tools:text="1d ago" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView3"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="2sp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginBottom="20sp" />
 
 </RelativeLayout>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="medium_green">#ff17bf63</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_blue">#180065</color>
+    <color name="light_blue">#334ee9ff</color>
+    <color name="medium_green">#3d853e</color>
+    <color name="dark_green">#3c2ae668</color>
+    <color name="light_green">#ff17bf63</color>
     <color name="medium_gray">#ffaab8c2</color>
     <color name="medium_gray_30">#4daab8c2</color>
     <color name="medium_gray_50">#80aab8c2</color>

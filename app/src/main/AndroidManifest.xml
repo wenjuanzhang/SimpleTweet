@@ -12,14 +12,26 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_twitter_round"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".TimelineActivity" />
+        android:theme="@style/AppBaseTheme">
+        <activity android:name=".PopComposeActivity">
+
+        </activity>
+        <activity android:name=".ComposeActivity" >
+
+        </activity>
+        <activity android:name=".DetailActivity" android:label="Full Tweet"
+            android:theme="@style/AppBaseTheme">
+
+        </activity>
+        <activity android:name=".TimelineActivity" android:label="SimpleTweet"
+            android:theme="@style/AppBaseTheme">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
